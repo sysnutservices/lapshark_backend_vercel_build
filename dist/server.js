@@ -34,15 +34,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // app.listen(5000, "0.0.0.0", () => {
 //   console.log("Server running on http://0.0.0.0:5000");
 // });
-const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const db_1 = __importDefault(require("./config/db"));
-const api_1 = __importDefault(require("./routes/api"));
-dotenv_1.default.config();
-(0, db_1.default)();
-const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
-app.use(express_1.default.json());
-app.use("/api", api_1.default);
-module.exports = app;   // <--- IMPORTANT
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const apiRoutes = require("./routes/api");
+
+dotenv.config();
+connectDB();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.use("/api", apiRoutes);
+
+module.exports = app;   // IMPORTANT
