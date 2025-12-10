@@ -5,10 +5,10 @@
 // import apiRoutes from '../src/routes/api';
 // import path from 'path';
 // import connectDB from '../src/config/db';
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
+// var __importDefault = (this && this.__importDefault) || function (mod) {
+//     return (mod && mod.__esModule) ? mod : { "default": mod };
+// };
+// Object.defineProperty(exports, "__esModule", { value: true });
 // dotenv.config();
 // // Connect to Database
 // const app = express();
