@@ -5,10 +5,10 @@
 // import apiRoutes from '../src/routes/api';
 // import path from 'path';
 // import connectDB from '../src/config/db';
-// var __importDefault = (this && this.__importDefault) || function (mod) {
-//     return (mod && mod.__esModule) ? mod : { "default": mod };
-// };
-// Object.defineProperty(exports, "__esModule", { value: true });
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 // dotenv.config();
 // // Connect to Database
 // const app = express();
@@ -34,37 +34,21 @@
 // app.listen(5000, "0.0.0.0", () => {
 //   console.log("Server running on http://0.0.0.0:5000");
 // });
-// const express_1 = __importDefault(require("express"));
-// const cors_1 = __importDefault(require("cors"));
-// const dotenv_1 = __importDefault(require("dotenv"));
-// const db_1 = __importDefault(require("./config/db"));
-// const api_1 = __importDefault(require("./routes/api"));
-// dotenv_1.default.config();
-// (0, db_1.default)();
-// const app = (0, express_1.default)();
-// app.use((0, cors_1.default)());
-// app.use(express_1.default.json());
-// app.use("/api", api_1.default);
-// app.get("/", (req, res) => {
-//     res.send("API is running...");
-// });
-// exports.default = app; // IMPORTANT: no app.listen()
-const express = require('express')
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const apiRoutes = require("./routes/api");
 
-const app = express()
-const PORT = 4000
+dotenv.config();
+connectDB();
 
-app.listen(PORT, () => {
-    console.log(`API listening on PORT ${PORT} `)
-})
+const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hey this is my API running 🥳')
-})
+app.use(cors());
+app.use(express.json());
 
-app.get('/about', (req, res) => {
-    res.send('This is my about route..... ')
-})
+app.use("/api", apiRoutes);
 
-// Export the Express API
-module.exports = app
+// IMPORTANT: NO app.listen() here (for Vercel Serverless)
+module.exports = app;
