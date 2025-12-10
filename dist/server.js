@@ -34,18 +34,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // app.listen(5000, "0.0.0.0", () => {
 //   console.log("Server running on http://0.0.0.0:5000");
 // });
-const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const db_1 = __importDefault(require("./config/db"));
-const api_1 = __importDefault(require("./routes/api"));
-dotenv_1.default.config();
-(0, db_1.default)();
-const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
-app.use(express_1.default.json());
-app.use("/api", api_1.default);
-app.get("/", (req, res) => {
-    res.send("API is running...");
-});
-exports.default = app; // IMPORTANT: no app.listen()
+// const express_1 = __importDefault(require("express"));
+// const cors_1 = __importDefault(require("cors"));
+// const dotenv_1 = __importDefault(require("dotenv"));
+// const db_1 = __importDefault(require("./config/db"));
+// const api_1 = __importDefault(require("./routes/api"));
+// dotenv_1.default.config();
+// (0, db_1.default)();
+// const app = (0, express_1.default)();
+// app.use((0, cors_1.default)());
+// app.use(express_1.default.json());
+// app.use("/api", api_1.default);
+// app.get("/", (req, res) => {
+//     res.send("API is running...");
+// });
+// exports.default = app; // IMPORTANT: no app.listen()
+const express = require('express')
+
+const app = express()
+const PORT = 4000
+
+app.listen(PORT, () => {
+    console.log(`API listening on PORT ${PORT} `)
+})
+
+app.get('/', (req, res) => {
+    res.send('Hey this is my API running 🥳')
+})
+
+app.get('/about', (req, res) => {
+    res.send('This is my about route..... ')
+})
+
+// Export the Express API
+module.exports = app
